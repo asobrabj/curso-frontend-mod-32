@@ -7,6 +7,11 @@
     <title>Validação de formulário</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/form.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" 
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="./js/jquery.mask.min.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -16,18 +21,22 @@
         <div class="input-group">
             <label for="nome">Nome</label>
             <input type="text" class="not-null" placeholder="Nome" id="nome" name="nome">
+            <div id="mensg_nome"> </div>
         </div>
         <div class="input-group">
             <label for="email">E-mail</label>
             <input type="text"  class="not-null" placeholder="E-mail" id="email" name="email">
+            <div id="mensg_email"> </div>
         </div>
         <div class="input-group">
             <label for="CPF">CPF</label>
-            <input type="text"  class="not-null" placeholder="CPF" id="cpf" name="cpf">
+            <input type="text"  class="not-null" placeholder="CPF" id="cpf" name="cpf" >
+            <div id="mensg_cpf"> </div>
         </div>
         <div class="input-group">
             <label for="CEP">CEP</label>
             <input type="text"  class="not-null" placeholder="CEP" id="cep" name="cep">
+            <div id="mensg_cep"> </div>
         </div>
 
          <div class="address">
@@ -54,6 +63,12 @@
     </form>
     
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#cpf").mask("999.999.999-99");
+        $("#cep").mask("99999999");
+	});
+</script>
 <script src="./js/form.js"></script>
 </body>
 </html>

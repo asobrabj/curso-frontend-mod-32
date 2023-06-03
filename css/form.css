@@ -36,6 +36,12 @@ button {
     color: #f00;
 }
 
+#mensg_nome, #mensg_email, #mensg_cpf, #mensg_cep {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #ff0f47;
+}   
+
 strong {
     font-size: 1.4rem;
 }

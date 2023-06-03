@@ -16,7 +16,7 @@ function validaEmail(elem){
 }
 
 function isEmpty(elem){
-    return elem.value.length < 1 ? `O campo <strong>${elem.name}</strong> não pode ser vazio.` : ''; 
+    return elem.value.length < 1 ? `O campo <strong>${elem.name}</strong> não pode ser vazio.` : '';
 }
 
 function validaCEP(elem){
@@ -41,6 +41,7 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
 
     let msg = [];
+    
     let markup = '';
    /*
     Array.from(notNull).forEach(field => {
@@ -49,35 +50,72 @@ form.addEventListener('submit', function(event){
             msg.push(fieldState);
     });
     */
+
+    /* incializa o retorno da mensagem */
+   
+
+
     const isNome= isEmpty(nome);
     if( isNome ) {
         msg.push(isNome);
         document.getElementById("nome").style.backgroundColor = '#FFEAA5';
+        document.getElementById('mensg_nome').innerHTML = 'Precisa preeencher o Nome!';
     } else {
         document.getElementById("nome").style.backgroundColor = '#eceef0';
+        document.getElementById('mensg_nome').innerHTML = '';
     }
 
-    const isCPF= isEmpty(cpf);
-    if(isCPF) {
-        msg.push(isCPF);
-        document.getElementById("cpf").style.backgroundColor = '#FFEAA5';
-    } else {
-        document.getElementById("cpf").style.backgroundColor = '#eceef0';
-    }
+
+
     const isEmail = validaEmail(email);
-    if(isEmail) msg.push(isEmail);
-    
+    //if(isEmail) { msg_email = isEmail; }
+    if(isEmail ) {
+        //msg.push(isEmail2);
+        document.getElementById("email").style.backgroundColor = '#FFEAA5';
+        document.getElementById('mensg_email').innerHTML = 'Digite um e-mail válido!';
+    } else {
+        
+        document.getElementById("email").style.backgroundColor = '#eceef0';
+        document.getElementById('mensg_email').innerHTML = '';
+        
+    }
+
     const isEmail2= isEmpty(email);
     if(isEmail2) {
-        msg.push(isEmail2);
+        //msg.push(isEmail2);
         document.getElementById("email").style.backgroundColor = '#FFEAA5';
+        document.getElementById('mensg_email').innerHTML = 'Precisa preeencher o E-mail!';
     } else {
-        document.getElementById("email").style.backgroundColor = '#eceef0';
+        //document.getElementById("email").style.backgroundColor = '#eceef0';
+        //document.getElementById('mensg_email').innerHTML = '';
     }
+
+
+    const isCPF= isEmpty(cpf);
+    if(isCPF || cpf.value.length !== 14) {
+        //msg.push(isCPF);
+        document.getElementById("cpf").style.backgroundColor = '#FFEAA5';
+        document.getElementById('mensg_cpf').innerHTML = 'Precisa preeencher o CPF!';
+    } else {
+        document.getElementById("cpf").style.backgroundColor = '#eceef0';
+        document.getElementById('mensg_cpf').innerHTML = '';
+    }
+
+console.log(cep.value.length);
+    const isCEP2= isEmpty(cep);   // && cep.value.length == 8
+    if(cep.value.length !== 8 ) {
+        //msg.push(isCPF);
+        document.getElementById("cep").style.backgroundColor = '#FFEAA5';
+        document.getElementById('mensg_cep').innerHTML = 'Precisa preeencher o CEP correto!';
+    } else {
+        document.getElementById("cep").style.backgroundColor = '#eceef0';
+        document.getElementById('mensg_cep').innerHTML = '';
+    }
+
     
     const isCEP = validaCEP(cep);
     if(isCEP.length > 0) {
-        msg.push(isCEP);
+        //msg.push(isCEP);
     } else {  
         const script = document.createElement('script');
         script.src = 'https://viacep.com.br/ws/' + cep.value + '/json?callback=updateAdress';
@@ -88,7 +126,7 @@ form.addEventListener('submit', function(event){
         markup += `<p>${item}</p>` 
     });
 
-    mensagem.innerHTML = markup;
+    //mensagem.innerHTML = markup;
 
      //if(msg.length == 0)  form.submit();
 
